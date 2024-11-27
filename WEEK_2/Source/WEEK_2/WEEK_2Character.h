@@ -40,6 +40,10 @@ class AWEEK_2Character : public ACharacter
 	/** Move Input Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	UInputAction* MoveAction;
+
+	/** 得分 */
+	UPROPERTY(EditAnywhere)
+	float Score = 0.0f;
 	
 public:
 	AWEEK_2Character();

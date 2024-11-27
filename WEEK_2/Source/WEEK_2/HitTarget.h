@@ -10,17 +10,29 @@ UCLASS()
 class WEEK_2_API AHitTarget : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	AHitTarget();
 
+	float Score = 1.f;
+	float Scale = 0.5f;
+	int HitCount = 0;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UPROPERTY(VisibleAnywhere)
+	class UBoxComponent* MyComp;
+
+	UFUNCTION()
+	void OnCompHit(UPrimitiveComponent* HitComp,
+	               AActor* OtherActor,
+	               UPrimitiveComponent* OtherComp,
+	               FVector NormalImpulse,
+	               const FHitResult& Hit);
 };

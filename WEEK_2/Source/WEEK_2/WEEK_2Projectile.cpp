@@ -1,16 +1,18 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "WEEK_2Projectile.h"
+
+#include "HitTarget.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Components/SphereComponent.h"
 
-AWEEK_2Projectile::AWEEK_2Projectile() 
+AWEEK_2Projectile::AWEEK_2Projectile()
 {
 	// Use a sphere as a simple collision representation
 	CollisionComp = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComp"));
 	CollisionComp->InitSphereRadius(5.0f);
 	CollisionComp->BodyInstance.SetCollisionProfileName("Projectile");
-	CollisionComp->OnComponentHit.AddDynamic(this, &AWEEK_2Projectile::OnHit);		// set up a notification for when this component hits something blocking
+	CollisionComp->OnComponentHit.AddDynamic(this, &AWEEK_2Projectile::OnHit); // set up a notification for when this component hits something blocking
 
 	// Players can't walk on it
 	CollisionComp->SetWalkableSlopeOverride(FWalkableSlopeOverride(WalkableSlope_Unwalkable, 0.f));

@@ -13,7 +13,7 @@
 // Sets default values for this component's properties
 UTP_WeaponComponent::UTP_WeaponComponent()
 {
-	// Default offset from the character location for projectiles to spawn
+	// Default offset from the character location for projectiles(抛射物) to spawn
 	MuzzleOffset = FVector(100.0f, 0.0f, 10.0f);
 }
 
