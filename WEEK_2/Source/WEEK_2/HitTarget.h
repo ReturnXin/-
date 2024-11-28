@@ -15,7 +15,7 @@ public:
 	// Sets default values for this actor's properties
 	AHitTarget();
 
-	float Score = 1.f;
+	float Score = 1.0f;
 	float Scale = 0.5f;
 	int HitCount = 0;
 protected:

@@ -3,8 +3,10 @@
 
 #include "HitTarget.h"
 
+#include "TP_WeaponComponent.h"
 #include "Components/BoxComponent.h"
 #include "WEEK_2Projectile.h"
+#include "WEEK_2Character.h"
 
 // Sets default values
 AHitTarget::AHitTarget()
@@ -35,27 +37,35 @@ void AHitTarget::Tick(float DeltaTime)
 }
 
 void AHitTarget::OnCompHit(UPrimitiveComponent* HitComp,
-                                AActor* OtherActor,
-                                UPrimitiveComponent* OtherComp,
-                                FVector NormalImpulse,
-                                const FHitResult& Hit)
+                           AActor* OtherActor,
+                           UPrimitiveComponent* OtherComp,
+                           FVector NormalImpulse,
+                           const FHitResult& Hit)
 {
 	if ((OtherActor != NULL) && (OtherActor != this) && (OtherComp != NULL))
 	{
-		// if (GEngine) GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("I Hit: %s"), *OtherActor->GetName()));
-		AActor* Projecttile = Cast<AWEEK_2Projectile>(OtherActor);
-		if (Projecttile != nullptr)
+		if (AActor* Projectile = Cast<AWEEK_2Projectile>(OtherActor))
 		{
-			UE_LOG(LogTemp, Warning, TEXT("The Actor's name is %s"), *OtherActor->GetName());
 			HitCount++;
 			if (HitCount == 1)
 			{
 				FVector currentScale = MyComp->GetComponentScale();
 				MyComp->SetRelativeScale3D(currentScale * Scale);
-				// TODO: add Score
 			}
 			else if (HitCount == 2)
 			{
+				if (const AWEEK_2Character* Character = Cast<AWEEK_2Character>(OtherActor->Owner))
+				{
+					UE_LOG(LogTemp, Warning, TEXT("The Character's name is %s"), *Character->GetName());
+					if (AMyPlayerState* PS = Cast<AMyPlayerState>(Character->GetPlayerState()))
+					{
+						UE_LOG(LogTemp, Warning, TEXT("The Score is %f"), PS->MyGetScore());
+						PS->MyAddScore(Score);
+						UE_LOG(LogTemp, Warning, TEXT("The Score is %f"), PS->MyGetScore());
+					}
+				}
+
+				// 销毁
 				this->Destroy();
 			}
 		}

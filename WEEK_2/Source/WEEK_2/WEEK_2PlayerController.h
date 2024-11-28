@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "MyPlayerState.h"
 #include "GameFramework/PlayerController.h"
 #include "WEEK_2PlayerController.generated.h"
 

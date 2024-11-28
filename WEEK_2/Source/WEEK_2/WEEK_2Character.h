@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "MyPlayerState.h"
 #include "GameFramework/Character.h"
 #include "Logging/LogMacros.h"
 #include "WEEK_2Character.generated.h"
