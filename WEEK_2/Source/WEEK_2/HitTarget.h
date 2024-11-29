@@ -14,9 +14,7 @@ class WEEK_2_API AHitTarget : public AActor
 public:
 	// Sets default values for this actor's properties
 	AHitTarget();
-
-	float Score = 1.0f;
-	float Scale = 0.5f;
+	
 	int HitCount = 0;
 protected:
 	// Called when the game starts or when spawned
@@ -28,6 +26,16 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 	class UBoxComponent* MyComp;
+
+	// 是否为重要目标
+	UPROPERTY(EditAnywhere, Category="Score")
+	bool IsImportant = false;
+
+	UPROPERTY(EditAnywhere, Category="Score")
+	float Score = 1.0f;
+
+	UPROPERTY(EditAnywhere, Category="Score")
+	float Scale = 0.5f;
 
 	UFUNCTION()
 	void OnCompHit(UPrimitiveComponent* HitComp,

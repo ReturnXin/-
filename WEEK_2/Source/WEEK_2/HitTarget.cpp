@@ -60,7 +60,12 @@ void AHitTarget::OnCompHit(UPrimitiveComponent* HitComp,
 					if (AMyPlayerState* PS = Cast<AMyPlayerState>(Character->GetPlayerState()))
 					{
 						UE_LOG(LogTemp, Warning, TEXT("The Score is %f"), PS->MyGetScore());
-						PS->MyAddScore(Score);
+						if (IsImportant)
+						{
+							PS->MyAddScore(Score * 2);
+						}
+						else
+							PS->MyAddScore(Score);
 						UE_LOG(LogTemp, Warning, TEXT("The Score is %f"), PS->MyGetScore());
 					}
 				}
