@@ -54,20 +54,16 @@ void AHitTarget::OnCompHit(UPrimitiveComponent* HitComp,
 			}
 			else if (HitCount == 2)
 			{
-				UE_LOG(LogTemp, Warning, TEXT("The Character's name is aa"));
 				if (const AWEEK_2Character* Character = Cast<AWEEK_2Character>(Projectile->GetOwner()))
 				{
-					UE_LOG(LogTemp, Warning, TEXT("The Character's name is %s"), *Character->GetName());
 					if (AMyPlayerState* PS = Cast<AMyPlayerState>(Character->GetPlayerState()))
 					{
-						UE_LOG(LogTemp, Warning, TEXT("The Score is %f"), PS->MyGetScore());
 						if (IsImportant)
 						{
 							PS->MyAddScore(Score * 2);
 						}
 						else
 							PS->MyAddScore(Score);
-						UE_LOG(LogTemp, Warning, TEXT("The Score is %f"), PS->MyGetScore());
 					}
 				}
 
