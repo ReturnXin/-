@@ -54,7 +54,8 @@ void AHitTarget::OnCompHit(UPrimitiveComponent* HitComp,
 			}
 			else if (HitCount == 2)
 			{
-				if (const AWEEK_2Character* Character = Cast<AWEEK_2Character>(OtherActor->Owner))
+				UE_LOG(LogTemp, Warning, TEXT("The Character's name is aa"));
+				if (const AWEEK_2Character* Character = Cast<AWEEK_2Character>(Projectile->GetOwner()))
 				{
 					UE_LOG(LogTemp, Warning, TEXT("The Character's name is %s"), *Character->GetName());
 					if (AMyPlayerState* PS = Cast<AMyPlayerState>(Character->GetPlayerState()))
